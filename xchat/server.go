@@ -8,9 +8,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/gluk256/crypto/asym"
-	"github.com/gluk256/crypto/cmd/common"
 	"github.com/gluk256/crypto/terminal"
+	"github.com/gluk256/elliptic/asym"
 )
 
 var connexxions []net.Conn
@@ -146,7 +145,7 @@ func runServer() {
 		return
 	}
 
-	common.PrintPublicKey(&serverKey.PublicKey)
+	asym.PrintPublicKey(&serverKey.PublicKey)
 	fmt.Printf("your ip address: <%s> \n", ip)
 	fmt.Println("xserver started")
 

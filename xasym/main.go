@@ -6,10 +6,10 @@ import (
 	"os"
 	"strings"
 
-	"github.com/gluk256/crypto/asym"
 	"github.com/gluk256/crypto/cmd/common"
 	"github.com/gluk256/crypto/crutils"
 	"github.com/gluk256/crypto/terminal"
+	"github.com/gluk256/elliptic/asym"
 )
 
 var remotePeer *ecdsa.PublicKey
@@ -34,18 +34,18 @@ func setMyKey(key *ecdsa.PrivateKey) {
 		asym.AnnihilatePrivateKey(myKey)
 	}
 	myKey = key
-	common.PrintPublicKey(&myKey.PublicKey)
+	asym.PrintPublicKey(&myKey.PublicKey)
 }
 
 func importPrivateKey(cmd string) {
-	key, err := common.ImportPrivateKey(cmd)
+	key, err := asym.GetPrivateKey(cmd)
 	if err != nil {
 		setMyKey(key)
 	}
 }
 
 func importPubKey() {
-	key, _, err := common.ImportPubKey()
+	key, _, err := asym.GetPubKey()
 	if err != nil {
 		remotePeer = key
 	}

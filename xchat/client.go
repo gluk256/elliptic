@@ -15,10 +15,10 @@ import (
 
 	"github.com/gluk256/crypto/algo/keccak"
 	"github.com/gluk256/crypto/algo/primitives"
-	"github.com/gluk256/crypto/asym"
 	"github.com/gluk256/crypto/cmd/common"
 	"github.com/gluk256/crypto/crutils"
 	"github.com/gluk256/crypto/terminal"
+	"github.com/gluk256/elliptic/asym"
 )
 
 type Session struct {
@@ -216,7 +216,7 @@ func removeFromWhitelist(p []byte) {
 }
 
 func deletePeerFromWhitelist() {
-	_, raw, err := common.ImportPubKey()
+	_, raw, err := asym.GetPubKey()
 	if err == nil {
 		removeFromWhitelist(raw)
 	}
@@ -256,7 +256,7 @@ func invitePeerToChatSession(override bool) bool {
 
 	if sess.permPeerKey == nil {
 		fmt.Print("Inviting remote peer to the chat session, ")
-		key, raw, err := common.ImportPubKey()
+		key, raw, err := asym.GetPubKey()
 		if err != nil {
 			return false
 		}
@@ -448,7 +448,7 @@ func runClientCmdLoop() {
 }
 
 func changeWhitelist(add bool) {
-	_, raw, err := common.ImportPubKey()
+	_, raw, err := asym.GetPubKey()
 	if err == nil {
 		if add {
 			addToWhitelist(raw)
@@ -726,7 +726,7 @@ func printFingerprint(key *ecdsa.PublicKey, name string) bool {
 }
 
 func printKeys() bool {
-	common.PrintPublicKey(&clientKey.PublicKey)
+	asym.PrintPublicKey(&clientKey.PublicKey)
 	return printFingerprint(&ephemeralKey.PublicKey, "Your ephemeral")
 }
 

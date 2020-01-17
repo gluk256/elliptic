@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/gluk256/crypto/cmd/common"
+	"github.com/gluk256/elliptic/asym"
 )
 
 func processCommand(cmd string) {
@@ -25,7 +25,7 @@ func processCommand(cmd string) {
 	case 'r':
 		generateRandomKey()
 	case 'k':
-		common.PrintPublicKey(&myKey.PublicKey)
+		asym.PrintPublicKey(&myKey.PublicKey)
 	case 't':
 		sign(cmd, false)
 	case 'b':

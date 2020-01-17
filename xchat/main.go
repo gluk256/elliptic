@@ -11,9 +11,9 @@ import (
 
 	"github.com/gluk256/crypto/algo/keccak"
 	"github.com/gluk256/crypto/algo/primitives"
-	"github.com/gluk256/crypto/asym"
 	"github.com/gluk256/crypto/cmd/common"
 	"github.com/gluk256/crypto/crutils"
+	"github.com/gluk256/elliptic/asym"
 )
 
 const (
