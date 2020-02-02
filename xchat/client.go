@@ -106,7 +106,11 @@ func typeName(t byte) (s string) {
 }
 
 func updateSymKey(flag string) {
-	pass := common.GetPassword("p")
+	pass, err := common.GetPassword("p")
+	if err != nil {
+		fmt.Printf("Error: %s \n", err.Error())
+		return
+	}
 	salt := keccak.Digest(pass, 256)
 	crutils.AnnihilateData(pass)
 	if len(sess.symKey) == 256 {

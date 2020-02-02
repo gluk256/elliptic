@@ -34,7 +34,10 @@ func GetPrivateKey(cmd string) (key *ecdsa.PrivateKey, err error) {
 			return nil, err
 		}
 	}
-	pass := common.GetPassword(cmd)
+	pass, err := common.GetPassword(cmd)
+	if err != nil {
+		return nil, err
+	}
 	for i := 0; i < len(pass) && i < len(hash2fa); i++ {
 		pass[i] ^= hash2fa[i]
 	}

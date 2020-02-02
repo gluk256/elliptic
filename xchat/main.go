@@ -86,9 +86,14 @@ func loadEncryptionKeys(flags string) (err error) {
 		fmt.Println("====================> WARNING: test mode (without password), not safe to use for any other purposes!")
 		masterKey[0]++
 	} else {
-		pass := common.GetPassword(flags)
-		masterKey = primitives.XorInplace(masterKey, pass, 256)
-		crutils.AnnihilateData(pass)
+		pass, err := common.GetPassword(flags)
+		if err != nil {
+			crutils.AnnihilateData(pass)
+			return err
+		} else {
+			masterKey = primitives.XorInplace(masterKey, pass, 256)
+			crutils.AnnihilateData(pass)
+		}
 	}
 
 	ck := keccak.Digest(masterKey, 288)
