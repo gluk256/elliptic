@@ -40,7 +40,7 @@ func processCommand(cmd string) {
 }
 
 func help() {
-	fmt.Println("xasym v.0")
+	fmt.Println("xasym v.0.1")
 	fmt.Println("elliptic curve cryptography in console")
 	fmt.Println("USAGE: xasym flags")
 	helpInternal()
