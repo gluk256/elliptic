@@ -72,11 +72,11 @@ func Decrypt(key *ecdsa.PrivateKey, data []byte) (res []byte, err error) {
 	return ecies.ImportECDSA(key).Decrypt(data, nil, nil)
 }
 
-func AnnihilateBigInt(j *big.Int) {
-	arr := j.Bits()
+func AnnihilateBigInt(val *big.Int) {
+	arr := val.Bits()
 	sz := len(arr)
 	for i := sz - 1; i >= 0; i-- {
-		u, _ := crutils.StochasticUint64() // ignore the errors, because the pseudorandom entropy is good enough
+		u, _ := crutils.StochasticUint64() // ignore the errors, because even pseudorandom entropy is better than nothing
 		arr[i] ^= big.Word(u)
 	}
 	for i := 0; i < sz; i++ {
