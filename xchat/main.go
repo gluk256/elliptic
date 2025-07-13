@@ -200,7 +200,7 @@ func changeMaxFileSize() {
 }
 
 func help() {
-	fmt.Printf("xchat v.0.%d.1 \n", crutils.CipherVersion)
+	fmt.Printf("xchat v.0.%d.2 \n", crutils.CipherVersion)
 	fmt.Println("encrypted chat between remote peers, with ephemeral keys and forward secrecy")
 	fmt.Println("USAGE: xchat flags [ip_address[:port]] [server_pub_key] [client_pub_key]")
 	fmt.Println("\t -m main node (server)")
